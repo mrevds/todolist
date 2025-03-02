@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	_, err := database.ConnectDB()
-	if err != nil {
-		log.Fatalf("Could not connect to the database: %v", err)
+	db := database.GetDB()
+	if db == nil {
+		log.Fatalf("Could not connect to the database")
 	}
 	r := router.NewRouter()
 	log.Println("Starting server on :8080")
